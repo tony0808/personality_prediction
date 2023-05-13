@@ -14,19 +14,19 @@ class Parameters:
     N_XGBOOST_ESTIMATORS = 5
 
 class ModelNames:
-    SVM_MODEL = 'svm'
-    LOG_REG = 'lr'
-    DECISION_TREE = 'dt'
-    GAUSS_NB = 'gnb'
-    KNN = 'knn'
-    RNDFR = 'rf'
-    ADABOOST = 'ada'
-    XGBOOST = 'xgboost'
+    SVM_MODEL = 'Support Vector Machine'
+    LOG_REG = 'Logistic Regression'
+    DECISION_TREE = 'Decision Tree'
+    GAUSS_NB = 'Gauss Naive Bayes'
+    KNN = 'K Nearest Neighbor'
+    RNDFR = 'Random Forest'
+    ADABOOST = 'ADABoost'
+    XGBOOST = 'XGBoost'
 
 class FeatSelectorNames:
-    RFE = 'rfe'
-    SKB = 'skb'
-    PCA = 'pca'
+    RFE = 'Recursive Feature Elimination'
+    SKB = 'Select K Best'
+    PCA = 'Principal Component Analysis'
 
 # --------------------- FUNCTIONS --------------------- #
 def perform_cross_validation(clf, x_train, y_train, splits, scorers={'roc_auc' : 'roc_auc'}):
