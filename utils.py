@@ -32,8 +32,8 @@ class FeatSelectorNames:
 def perform_cross_validation(clf, x_train, y_train, splits, scorers={'roc_auc' : 'roc_auc'}):
     cv = KFold(n_splits=splits, random_state=1, shuffle=True)
     scores = cross_validate(clf, x_train, y_train, scoring=scorers, cv=cv, n_jobs=-1)
-    for key, value in scorers.items():
-        print(str(key) + ' on train set using 5-Fold-CV: %.3f (%.3f)' % (np.mean(scores['test_' + key]), np.std(scores['test_' + key])))
+    for score in scorers:
+        print(str(score) + ' on train set using 5-Fold-CV: %.3f (%.3f)' % (np.mean(scores['test_' + score]), np.std(scores['test_' + score])))
        
 def make_plots(y_test, y_pred, score_test, classname):
     print('Plotting curves and tables...\n')
