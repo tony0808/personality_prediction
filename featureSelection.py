@@ -3,8 +3,10 @@ from sklearn.decomposition import PCA
 from sklearn.feature_selection import RFE
 from sklearn.feature_selection import SelectKBest, f_classif, f_regression
 from sklearn.linear_model import LogisticRegression
-from sklearn.naive_bayes import GaussianNB
-from sklearn.svm import SVC
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import AdaBoostClassifier
+import xgboost as xgb
 from sklearn.tree import DecisionTreeClassifier
 from utils import *
 
@@ -33,7 +35,11 @@ class FeatureSelector:
     def recursiveFeatureSelector(self):
         selector_dict = {
             ModelNames.LOG_REG: LogisticRegression(class_weight=Parameters.LR_WEIGHT_CLASS, max_iter=Parameters.MAX_ITER),
-            ModelNames.DECISION_TREE: DecisionTreeClassifier()
+            ModelNames.DECISION_TREE: DecisionTreeClassifier(),
+            ModelNames.KNN: KNeighborsClassifier(n_neighbors=Parameters.N_NEIGHBORS),
+            ModelNames.RNDFR: RandomForestClassifier(n_estimators=Parameters.N_DECISION_TREES, random_state=42),
+            ModelNames.ADABOOST: AdaBoostClassifier(n_estimators=Parameters.N_ADABOOST_ESTIMATORS, random_state=42),
+            ModelNames.XGBOOST: xgb.XGBClassifier(n_estimators=Parameters.N_XGBOOST_ESTIMATORS, random_state=42)
         }
 
         self.selector = selector_dict.get(self.model_name)
